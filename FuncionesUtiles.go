@@ -4,11 +4,17 @@ package main
 
 import (
 	"fmt" //Formatting string y mostrando mensajes
+	"math"
 	"strings"
 )
 
 func saludar(nombre string) {
 	fmt.Printf("Buenos dias %v \n", nombre)
+}
+
+func areaCirculo(radio float64) float64 {
+	return math.Pi * radio * radio
+
 }
 
 func ciclarNombres(nombre []string, f func(string)) {
@@ -84,4 +90,7 @@ func main() {
 	saludar("Nico")
 
 	ciclarNombres([]string{"Max", "Javiera", "LucianoGey"}, saludar)
+
+	fmt.Printf("El radio del circulo es: %0.3f \n", areaCirculo(3.5))
+
 }
