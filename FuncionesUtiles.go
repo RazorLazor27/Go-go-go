@@ -7,6 +7,16 @@ import (
 	"strings"
 )
 
+func saludar(nombre string) {
+	fmt.Printf("Buenos dias %v \n", nombre)
+}
+
+func ciclarNombres(nombre []string, f func(string)) {
+	for _, v := range nombre {
+		f(v)
+	}
+}
+
 func main() {
 
 	var nombre string = "Nicolas"
@@ -70,4 +80,8 @@ func main() {
 	for _, valor := range nombres {
 		fmt.Printf("El nombre es: %v \n", valor)
 	}
+
+	saludar("Nico")
+
+	ciclarNombres([]string{"Max", "Javiera", "LucianoGey"}, saludar)
 }
