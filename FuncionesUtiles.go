@@ -1,5 +1,7 @@
 package main
 
+// Recordar para compilar se tiene que ocupar "go run FuncionesUtiles.go"
+
 import (
 	"fmt" //Formatting string y mostrando mensajes
 	"strings"
