@@ -32,13 +32,17 @@ while flag:
 		print()
 
 		nombre_dominio = input("Ingrese el Nombre de dominio :\n>")
-		clientSocket.sendto(nombre_dominio.encode(), (serverAddr,serverPort))
+
+
 		Ip_direction = input("Ingrese Dirección IP :\n>")
-		clientSocket.sendto(Ip_direction.encode(), (serverAddr,serverPort))
+	
 		ttl = input("Ingrese TTL :\n>")
-		clientSocket.sendto(ttl.encode(), (serverAddr,serverPort))
+	
 		type = input("Ingrese el Tipo :\n>")
-		clientSocket.sendto(type.encode(), (serverAddr,serverPort))
+	
+
+		enviar = [nombre_dominio, Ip_direction, ttl, type]
+		clientSocket.sendto(enviar.encode(), (serverAddr,serverPort))
 
 	if toSend == "2":
 		print()
