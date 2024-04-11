@@ -14,14 +14,20 @@ clientSocket = skt.socket(skt.AF_INET, skt.SOCK_DGRAM)
 
 toSend = input("Qué deseas hacer? \nMarca 1 si quieres agregar tu información\nMarca 2 en caso de querer la dirección IP de un nombre de dominio, \nEn caso de que quieras salir escribe STOP: \n")
 flag = True
+clientSocket.sendto(toSend.encode(), (serverAddr,serverPort))
 
 while flag:
+	
+
+	
 
 	if toSend == "STOP":
 		clientSocket.sendto(toSend.encode(), (serverAddr,serverPort))
 		print("Programa Finalizado")
-		flag = False 
+		flag = True
 	if toSend == "1":
+
+
 
 		print()
 
@@ -45,5 +51,6 @@ while flag:
 
 		msg, addr = clientSocket.recvfrom(1024)
 		print(msg.decode()) 
-		
+
 	toSend = input("\nQué deseas hacer? \nMarca 1 si quieres agregar tu información\nMarca 2 en caso de querer la dirección IP de un nombre de dominio, \nEn caso de que quieras salir escribe STOP: \n")
+	clientSocket.sendto(toSend.encode(), (serverAddr,serverPort))
