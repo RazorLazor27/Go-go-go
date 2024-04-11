@@ -32,18 +32,15 @@ while flag:
 		print()
 
 		nombre_dominio = input("Ingrese el Nombre de dominio :\n>")
-
-
 		Ip_direction = input("Ingrese Dirección IP :\n>")
-	
 		ttl = input("Ingrese TTL :\n>")
-	
-		type = input("Ingrese el Tipo :\n>")
-	
+		tipo = input("Ingrese el Tipo :\n>")
 
-		enviar = [nombre_dominio, Ip_direction, ttl, type]
+		# Concatenar las cadenas con punto y coma
+		enviar = nombre_dominio + ";" + Ip_direction + ";" + ttl + ";" + tipo
+
+		# Enviar la cadena concatenada al servidor
 		clientSocket.sendto(enviar.encode(), (serverAddr,serverPort))
-
 	if toSend == "2":
 		print()
 
