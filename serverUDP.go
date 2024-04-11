@@ -45,30 +45,65 @@ func cicloCliente(conexion *net.UDPConn) {
 	msg := string(buffer[:n])
 	// fmt.Println("El mensaje recibido fue: ", msg)
 
+	if strings.Contains(msg, "1") {
+		// guardar informacion
+		fmt.Println("El mensaje recibido fue: ", msg)
+		buffer := make([]byte, 1024)
+		n, addr, err := conexion.ReadFromUDP(buffer)
+		fmt.Print(" --- ", string(buffer[0:n]))
+		fmt.Println("El mensaje recibido de: ", addr.String(), ", fue:", string(buffer[:n]))
+
+		aux := string(buffer[:n])
+
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		subcadena := strings.Split(aux, ";")
+
+		array[contador][0] = subcadena[0]
+		array[contador][1] = subcadena[1]
+		array[contador][2] = subcadena[2]
+		array[contador][3] = subcadena[3]
+		contador++
+
+	}
+	if strings.Contains(msg, "2") {
+		fmt.Println("El mensaje recibido fue: ", msg)
+		fmt.Println("El mensaje recibido fue: ", msg)
+		buffer := make([]byte, 1024)
+		n, addr, err := conexion.ReadFromUDP(buffer)
+		fmt.Print(" --- ", string(buffer[0:n]))
+		fmt.Println("El mensaje recibido de: ", addr.String(), ", fue:", string(buffer[:n]))
+
+		aux := string(buffer[:n])
+
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		for i := range array {
+			if aux == array[i][0] {
+				fmt.Println(" La direccion ip es: ", addr.String())
+
+				auxbuf := []byte(array[i][1])
+				_, err := conexion.WriteToUDP(auxbuf, addr)
+
+				if err != nil {
+					fmt.Println(err)
+				}
+
+				fmt.Println("El mensaje fue enviado: ")
+
+			}
+		}
+
+	}
 	if strings.Contains(msg, "STOP") {
 		fmt.Println("La conexion UDP fue cerrada")
 		// Si UDPServerStatus es falso, se cierra el servidor
 		UDPServerStatus = false
-
-	} else {
-		array[posicion][contador] = msg
-		contador++
-
-		if contador == 4 {
-			posicion++
-		}
-		fmt.Println("El mensaje recibido fue: ", msg)
-
 	}
-	for _, fila := range array {
-		for _, elemento := range fila {
-			fmt.Printf("%s ", elemento)
-		}
-	}
-	// else {
-	// fmt.Println("Conexion no aceptada, procediendo a cerrar la conexion UDP")
-	// UDPServerStatus = false
-	//}
 }
 
 func main() {
