@@ -51,6 +51,7 @@ while flag:
 
 
 		msg, addr = clientSocket.recvfrom(1024)
+		print("aqui respuesta")
 		print(msg.decode()) 
 
 	toSend = input("\nQué deseas hacer? \nMarca 1 si quieres agregar tu información\nMarca 2 en caso de querer la dirección IP de un nombre de dominio, \nEn caso de que quieras salir escribe STOP: \n")
