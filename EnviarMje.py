@@ -23,20 +23,16 @@ while flag:
 		flag = True
 	if toSend == "1":
 
-		nombre_dominio = input("Ingrese el Nombre de dominio :\n>")
-		Ip_direction = input("Ingrese Dirección IP :\n>")
-		ttl = input("Ingrese TTL :\n>")
-		type = input("Ingrese el Tipo :\n>")
-
 		print()
 
+		nombre_dominio = input("Ingrese el Nombre de dominio :\n>")
 		clientSocket.sendto(nombre_dominio.encode(), (serverAddr,serverPort))
+		Ip_direction = input("Ingrese Dirección IP :\n>")
 		clientSocket.sendto(Ip_direction.encode(), (serverAddr,serverPort))
+		ttl = input("Ingrese TTL :\n>")
 		clientSocket.sendto(ttl.encode(), (serverAddr,serverPort))
+		type = input("Ingrese el Tipo :\n>")
 		clientSocket.sendto(type.encode(), (serverAddr,serverPort))
-
-		msg, addr = clientSocket.recvfrom(1024)
-		print(msg.decode()) 
 
 	if toSend == "2":
 		print()
@@ -49,5 +45,5 @@ while flag:
 
 		msg, addr = clientSocket.recvfrom(1024)
 		print(msg.decode()) 
-	toSend = input("Qué deseas hacer? \nMarca 1 si quieres agregar tu información\nMarca 2 en caso de querer la dirección IP de un nombre de dominio, \nEn caso de que quieras salir escribe STOP: \n")
-
+		
+	toSend = input("\nQué deseas hacer? \nMarca 1 si quieres agregar tu información\nMarca 2 en caso de querer la dirección IP de un nombre de dominio, \nEn caso de que quieras salir escribe STOP: \n")
