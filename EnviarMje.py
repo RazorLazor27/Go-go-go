@@ -20,7 +20,7 @@ while flag:
 	if toSend == "STOP":
 		clientSocket.sendto(toSend.encode(), (serverAddr,serverPort))
 		print("Programa Finalizado")
-		flag = True
+		flag = False 
 	if toSend == "1":
 
 		print()
